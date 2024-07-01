@@ -30,7 +30,6 @@ export async function fetchRevenue() {
 
 export async function fetchLatestInvoices() {
   try {
-
     const data = await sql<LatestInvoiceRaw>`
       SELECT invoices.amount, customers.name, customers.image_url, customers.email, invoices.id
       FROM invoices
@@ -159,6 +158,7 @@ export async function fetchInvoiceById(id: string) {
       amount: invoice.amount / 100,
     }));
 
+    console.log(invoice); // Invoice is an empty array []
     return invoice[0];
   } catch (error) {
     console.error("Database Error:", error);
